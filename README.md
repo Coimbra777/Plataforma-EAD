@@ -14,6 +14,28 @@ Crie o Arquivo .env
 cp .env.example .env
 ```
 
+Atualize as variáveis de ambiente do arquivo .env
+
+```sh
+APP_NAME="Especializa Ti"
+APP_URL=http://localhost:8989
+
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=root
+
+CACHE_DRIVER=redis
+QUEUE_CONNECTION=redis
+SESSION_DRIVER=redis
+
+REDIS_HOST=redis
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+```
+
 Acesse o container app
 
 ```sh
