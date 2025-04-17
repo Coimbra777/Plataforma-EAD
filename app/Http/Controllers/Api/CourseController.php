@@ -32,7 +32,9 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = $this->courseService->createNewCourse($request->validated());
+
+        return new CourseResource($course);
     }
 
     /**

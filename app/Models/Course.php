@@ -13,6 +13,7 @@ class Course extends Model
     protected $table = 'courses';
 
     protected $fillable = [
+        'uuid',
         'name',
         'description',
     ];
