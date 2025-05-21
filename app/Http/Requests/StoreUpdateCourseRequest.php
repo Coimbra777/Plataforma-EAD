@@ -21,9 +21,10 @@ class StoreUpdateCourseRequest extends FormRequest
      */
     public function rules(): array
     {
-        // dd($this->all());
+        $identify = $this->identify ?? '';
+
         return [
-            'title' => ['required', 'min:3', 'max:255', 'unique:courses'],
+            'title' => ['required', 'min:3', 'max:255', "unique:courses,title,{$identify},identify"],
             'description' => ['nullable', 'min:3', 'max:99999'],
         ];
     }
