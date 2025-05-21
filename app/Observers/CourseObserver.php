@@ -8,11 +8,13 @@ use Illuminate\Support\Str;
 class CourseObserver
 {
     /**
-     * Handle the Course "created" event.
+     * Handle the Course "creating" event.
+     * @param \App\Models\Course $course
+     * @return void
      */
-    public function created(Course $course): void
+    public function creating(Course $course): void
     {
-        $course->uuid = (string) Str::uuid();
+        $course->identify = (string) Str::uuid();
     }
 
     /**

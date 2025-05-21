@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUpdateCourseRequest;
 use App\Http\Resources\CourseResource;
 use App\Services\CourseService;
 use Illuminate\Http\Request;
@@ -30,7 +31,7 @@ class CourseController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUpdateCourseRequest $request)
     {
         $course = $this->courseService->createNewCourse($request->validated());
 
@@ -40,9 +41,11 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $identify)
     {
-        //
+        $course = $this->courseService->getCourse($identify);
+
+        return new CourseResource($course);
     }
 
     /**

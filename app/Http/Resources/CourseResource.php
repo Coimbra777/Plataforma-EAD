@@ -17,7 +17,8 @@ class CourseResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
+            'identify' => $this->identify,
+            'title' => $this->title,
             'description' => $this->description,
             'date' => Carbon::make($this->created_at)->format('d/m/Y')
         ];
