@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUpdateCourseRequest;
 use App\Http\Resources\CourseResource;
 use App\Services\CourseService;
-use Illuminate\Http\Request;
 
 class CourseController extends Controller
 {
@@ -50,17 +49,24 @@ class CourseController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * @param StoreUpdateCourseRequest $request
+     * @param string $identify
+     * @return CourseResource
      */
-    public function update(Request $request, string $id)
+    public function update(StoreUpdateCourseRequest $request, string $identify)
     {
-        //
+        $this->courseService->updateCourse($identify, $request->validated());
+
+        return response()->json(['message' => 'Curso atualizado com sucesso']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $identify)
     {
-        //
+        $this->courseService->deleteCourse($identify);
+
+        return response()->json([], 204);
     }
 }

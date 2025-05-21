@@ -21,6 +21,7 @@ class StoreUpdateCourseRequest extends FormRequest
      */
     public function rules(): array
     {
+        // dd($this->all());
         return [
             'title' => ['required', 'min:3', 'max:255', 'unique:courses'],
             'description' => ['nullable', 'min:3', 'max:99999'],

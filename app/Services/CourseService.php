@@ -25,6 +25,16 @@ class CourseService
 
     public function getCourse(string $identify)
     {
-        return $this->repository->getCourseByUuid($identify);
+        return $this->repository->getCourseByIdentify($identify);
+    }
+
+    public function updateCourse(string $identify, array $data)
+    {
+        return $this->repository->updateCourseByIdentify($identify, $data);
+    }
+
+    public function deleteCourse(string $identify)
+    {
+        return $this->repository->deleteCourse($identify);
     }
 }
