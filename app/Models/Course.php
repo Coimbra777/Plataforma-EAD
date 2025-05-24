@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasIdentify;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    use HasFactory;
+    use HasFactory, HasIdentify;
 
     protected $table = 'courses';
 

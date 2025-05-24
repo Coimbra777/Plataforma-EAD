@@ -6,7 +6,7 @@ use App\Http\Controllers\Api\{
 };
 use Illuminate\Support\Facades\Route;
 
-Route::apiResource('/courses/{course}modules', ModuleController::class);
+Route::apiResource('/courses/{course}/modules', ModuleController::class);
 
 Route::get('/courses', [CourseController::class, 'index']);
 Route::post('/courses', [CourseController::class, 'store']);

@@ -2,17 +2,18 @@
 
 namespace App\Models;
 
+use App\Traits\HasIdentify;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Module extends Model
 {
-    use HasFactory;
+    use HasFactory, HasIdentify;
 
     protected $table = 'modules';
 
     protected $fillable = [
-        'uuid',
+        'identify',
         'course_id',
         'name',
     ];

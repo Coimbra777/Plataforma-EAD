@@ -13,9 +13,9 @@ class ModuleRepository
         $this->entity = $module;
     }
 
-    public function getAllModules()
+    public function getModulesByCourse($courseId)
     {
-        return $this->entity->get();
+        return $this->entity->where('course_id', $courseId)->get();
     }
 
     public function createNewModule(array $data)
@@ -23,22 +23,22 @@ class ModuleRepository
         return $this->entity->create($data);
     }
 
-    public function getModuleByUuid(string $uuid)
+    public function getModuleByCourse($courseId, string $identify)
     {
-        return $this->entity->where('uuid', $uuid)->firstOrFail();
+        return $this->entity->where('identify', $identify)->where('course_id', $courseId)->firstOrFail();
     }
 
-    public function updateModuleByuuid(string $uuid, array $data)
+    public function updateModuleByCourse($courseId, string $identify, array $data)
     {
-        $course = $this->getModuleByUuid($uuid);
+        $module = $this->getModuleByCourse($courseId, $identify);
 
-        return $course->update($data);
+        return $module->update($data);
     }
 
-    public function deleteModule(string $uuid)
+    public function deleteModule(int $courseId, string $identify)
     {
-        $course = $this->getModuleByUuid($uuid);
+        $module = $this->getModuleByCourse($courseId, $identify);
 
-        return $course->delete();
+        return $module->delete();
     }
 }

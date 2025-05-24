@@ -17,6 +17,7 @@ class ModuleResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'identify' => $this->identify,
             'name' => $this->name,
             'date' => Carbon::make($this->created_at)->format('d/m/Y')
         ];

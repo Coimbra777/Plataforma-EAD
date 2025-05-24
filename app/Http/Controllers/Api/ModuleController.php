@@ -18,8 +18,7 @@ class ModuleController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return \Illuminate\Http\Response
      */
     public function index($course)
     {
@@ -31,45 +30,49 @@ class ModuleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return  \Illuminate\Http\Response
      */
-    public function store(StoreUpdateModuleRequest $request, $course)
+    public function store(StoreUpdateModuleRequest $request, $courseIdentify)
     {
-        $module = $this->moduleService->createNewModule($request->validated());
+        $data = $request->validated();
 
-        return new ModuleService($module);
+        $module = $this->moduleService->createNewModule($data, $courseIdentify);
+
+        return new ModuleResource($module);
     }
 
     /**
      * Display the specified resource.
+     * @param string $identify
+     * @return \Illuminate\Http\Response
      */
     public function show($course, string $identify)
     {
-        $course = $this->moduleService->getModuleByCourse($course, $identify);
+        $module = $this->moduleService->getModuleByCourse($course, $identify);
 
-        return new ModuleService($course);
+        return new ModuleResource($module);
     }
 
     /**
      * Update the specified resource in storage.
      * @param StoreUpdateCourseRequest $request
-     * @param string $uuid
+     * @param string $identify
      * @return ModuleService
      */
-    public function update(StoreUpdateModuleRequest $request, $course, string $uuid)
+    public function update(StoreUpdateModuleRequest $request, string $courseIdentify, string $identify)
     {
-        $this->moduleService->updateModuleByCourse($uuid, $request->validated());
+        $this->moduleService->updateModuleByCourse($courseIdentify, $identify, $request->validated());
 
-        return response()->json(['message' => 'Curso atualizado com sucesso']);
+        return response()->json(['message' => 'Módulo atualizado com sucesso']);
     }
 
     /**
      * Remove the specified resource from storage.
+     * @param string $identify
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(string $uuid)
+    public function destroy(string $courseIdentify, string $identify)
     {
-        $this->moduleService->deleteModule($uuid);
+        $this->moduleService->deleteModule($courseIdentify, $identify);
 
         return response()->json([], 204);
     }
